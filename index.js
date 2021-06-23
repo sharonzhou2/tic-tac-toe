@@ -23,6 +23,10 @@ const winnerName = document.getElementById("winnerName");
 const submitNameOneBtn = document.getElementById("submitNameOne");
 const submitNameTwoBtn = document.getElementById("submitNameTwo");
 
+const inputTextBoxOne = document.getElementsByName('playerName')[0];
+const inputTextBoxTwo = document.getElementsByName('playerName')[1];
+
+
 let countTiles = 0;
 
 let state = false;
@@ -179,23 +183,40 @@ function closeModal() {
 }
 
 submitNameOneBtn.addEventListener('click', ()=> {
-    const inputTextBoxOne = document.getElementsByName('playerName')[0];
+    updateNameOne();
+   
+})
+
+inputTextBoxOne.addEventListener('keyup', (e) => {
+    if (e.key === "Enter") {
+        updateNameOne();
+    }
+})
+
+function updateNameOne() {
     const playerName = document.getElementById("p1Name");
 
     playerOne.name = inputTextBoxOne.value;
     playerName.textContent = playerOne.name;
 
     inputTextBoxOne.value = "";
-})
+}
 
 submitNameTwoBtn.addEventListener('click', ()=> {
-    const inputTextBoxOne = document.getElementsByName('playerName')[1];
+    updateNameTwo();
+})
+
+inputTextBoxTwo.addEventListener('keyup', (e) => {
+    if (e.key === "Enter") {
+        updateNameTwo();
+    }
+})
+
+function updateNameTwo() {
     const playerName = document.getElementById("p2Name");
 
-    playerTwo.name = inputTextBoxOne.value; 
+    playerTwo.name = inputTextBoxTwo.value; 
     playerName.textContent = playerTwo.name;
 
-    inputTextBoxOne.value = "";
-
-    
-})
+    inputTextBoxTwo.value = "";
+}
